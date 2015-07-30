@@ -5,9 +5,13 @@
         <input type="submit" value="Buscar"/>
     </form>
     </br>
-    <table>
+    <table cellspacing="10" >
         <% var i; for (i=0; i< quiz.length; i++) { %>
-            <tr><td><a href="quizes/<%= quiz[i].id %>"><%= quiz[i].pregunta %></a></td>
+            <tr>
+                <td><strong>Tema:</strong> </td>
+                <td ><%= quiz[i].tema %></td>
+                <td><strong>Pregunta:</strong> </td>
+                <td><a href="quizes/<%= quiz[i].id %>"><%= quiz[i].pregunta %></a></td>
                 <td><a href="quizes/<%= quiz[i].id %>/edit"><button>editar</button></a></td>
                 <td>
                     <form method="post" action="quizes/<%= quiz[i].id %>?_method=delete">
