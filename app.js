@@ -28,12 +28,13 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Helpers dinámicos
-
 app.use(function( req, res, next) {
         
     //guardar path en session.redir para después de login
     if (!req.path.match(/\/login|\/logout/)) {
         req.session.redir = req.path;
+        //la sesión expira a los 2 minutos
+        req.session.cookie.maxAge=120000;
     }
     
     //Hacer visible req.session en las vistas
@@ -41,6 +42,13 @@ app.use(function( req, res, next) {
     next();
 });
 
+/*
+app.use(function( req, res, next) {
+        
+   
+    next();
+});
+*/
 
 app.use('/', routes);
 
